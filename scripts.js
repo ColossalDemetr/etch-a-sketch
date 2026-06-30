@@ -29,8 +29,12 @@ const rstBtn = document.querySelector('#resetBtn');
 
 rstBtn.addEventListener("click", (e) => {
     let askUser = +prompt("How many cells should be in the grid?");
+    if (askUser > 100) {
+        alert("Way too big of a grid.")
+    } else {
     container.innerHTML = "";
     createGrid(askUser);
+    };
 });
 
 createGrid(16);
