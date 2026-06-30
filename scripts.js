@@ -13,14 +13,27 @@ const container = document.querySelector(`#container`);
 
 function createGrid (size) {
     for (let i = 0; i < size * size; i++) {
+
         let widthAndHeight = 960 / size;
         let newDiv = document.createElement("div");
+        let hoverCount = 0;
+
         newDiv.classList.add("grid-item");
         container.appendChild(newDiv);
+
         newDiv.style.width = (widthAndHeight + "px");
         newDiv.style.height = (widthAndHeight + "px");
-        newDiv.addEventListener("mouseover", (e) => {
-            newDiv.style.backgroundColor = "firebrick";
+
+
+            newDiv.addEventListener("mouseover", (e) => {
+                if (hoverCount <= 10) {
+                hoverCount++;
+                let math = hoverCount / 10;
+                newDiv.style.opacity = math;
+                newDiv.style.backgroundColor = "lawngreen";
+                } else {
+                    return;
+                }
         });
     };
 };
