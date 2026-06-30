@@ -12,10 +12,13 @@
 const container = document.querySelector(`#container`);
 
 function createGrid (size) {
-    for (let i = 0; i < 256; i++) {
+    for (let i = 0; i < size * size; i++) {
+        let widthAndHeight = 960 / size;
         let newDiv = document.createElement("div");
         newDiv.classList.add("grid-item");
         container.appendChild(newDiv);
+        newDiv.style.width = (widthAndHeight + "px");
+        newDiv.style.height = (widthAndHeight + "px");
         newDiv.addEventListener("mouseover", (e) => {
             newDiv.style.backgroundColor = "firebrick";
         });
@@ -27,5 +30,7 @@ const rstBtn = document.querySelector('#resetBtn');
 rstBtn.addEventListener("click", (e) => {
     let askUser = +prompt("How many cells should be in the grid?");
     container.innerHTML = "";
-    createGrid();
+    createGrid(askUser);
 });
+
+createGrid(16);

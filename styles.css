@@ -5,8 +5,15 @@
 }
 
 .grid-item {
-    width: 60px;
-    height: 60px;
     box-sizing: border-box;
     border: 2px solid black;
+}
+
+#resetBtn {
+    background-color: azure;
+    border-radius: 15px;
+    margin-bottom: 5px;
+    width: 500px;
+    height: 250px;
+    border: 5px solid black;
 }
