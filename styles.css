@@ -20,19 +20,28 @@ body {
     border: 2px solid black;
     transition: background-color 0.2s;
 }
-
-#resetBtn {
+.Buttons {
     border: 3px solid black;
     padding: 20px;
     border-radius: 20px;
     background-color: #9198e6;
     color: black;
     cursor:pointer;
-    margin-bottom: 10px;
-      
+    margin-bottom: 10px;  
 }
 
-#resetBtn:hover {
+.Buttons:hover {
     background-color: #5b5f8d;
     transition: background-color 0.5s;
+}
+
+#rainbowBtn {
+    background: linear-gradient(135deg, red, orange, yellow, green, blue, violet, red);
+    background-size: 400% 100%;
+    animation: rainbow 4s ease-in-out infinite alternate;
+}
+
+@keyframes rainbow {
+    0% { background-position: 0% 50%; }
+    100% { background-position: 100% 50%; }
 }

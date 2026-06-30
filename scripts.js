@@ -10,8 +10,29 @@
 */
 
 const container = document.querySelector(`#container`);
+const rainbowBtn = document.querySelector("#rainbowBtn");
+const clearBtn = document.querySelector("#clearBtn")
+let currentSize = 16;
+
+clearBtn.addEventListener("click", (e) => {
+    container.innerHTML = "";
+    createGrid(currentSize);
+})
+
+let rainbowMode = false;
+rainbowBtn.addEventListener("click", (e) => {
+    rainbowMode = !rainbowMode;
+    if (rainbowMode) {
+        rainbowBtn.textContent = "Rainbow mode - On!";
+    } else {
+        rainbowBtn.textContent = "Rainbow mode - Off!";
+    }
+});
+
+
 
 function createGrid (size) {
+    
     for (let i = 0; i < size * size; i++) {
 
         let widthAndHeight = 960 / size;
@@ -26,14 +47,21 @@ function createGrid (size) {
 
 
             newDiv.addEventListener("mouseover", (e) => {
-                if (hoverCount <= 10) {
-                hoverCount++;
-                let math = hoverCount / 10;
-                newDiv.style.opacity = math;
-                newDiv.style.backgroundColor = "lawngreen";
+                if (rainbowMode) {
+                    let red = Math.floor(Math.random() * 256);
+                    let green = Math.floor(Math.random() * 256);
+                    let blue = Math.floor(Math.random() * 256);
+                    let RGB = `rgb(${red}, ${green}, ${blue})`;
+                    newDiv.style.backgroundColor = RGB;
                 } else {
-                    return;
-                }
+                    if (hoverCount <= 10) {
+                        hoverCount++;
+                        let math = hoverCount / 10;
+                        newDiv.style.opacity = math;
+                        newDiv.style.backgroundColor = "lawngreen";
+                    } else {
+                        return;
+                        }        };
         });
     };
 };
@@ -42,6 +70,7 @@ const rstBtn = document.querySelector('#resetBtn');
 
 rstBtn.addEventListener("click", (e) => {
     let askUser = +prompt("How many cells should be in the grid?");
+    currentSize = askUser;
     if (askUser > 100) {
         alert("Way too big of a grid.")
     } else {
